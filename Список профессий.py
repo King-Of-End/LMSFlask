@@ -1,5 +1,7 @@
 from flask import Flask, render_template
 
+from render import render_style
+
 app = Flask(__name__)
 
 professions = '''инженер-исследователь, пилот, строитель, экзобиолог, врач, инженер по терраформированию, климатолог, 
@@ -11,7 +13,7 @@ professions = '''инженер-исследователь, пилот, стро
 def list_prof(list_type):
     if list_type not in ['ol', 'ul']:
         return "Неверный параметр! Доступно: 'ol', 'ul'"
-    return render_template('list.html', list_type=list_type, items=professions)
+    return render_style('list.html', list_type=list_type, items=professions)
 
 
 def main():
