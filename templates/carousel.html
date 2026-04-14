@@ -1,0 +1,24 @@
+{% extends "base_no_login.html" %}
+
+{% block content %}
+    <h1>Пейзажи Марса</h1>
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Назад</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Вперед</span>
+        </button>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://main-cdn.sbermegamarket.ru/big1/hlr-system/212/695/041/551/422/13/100068365992b0.jpg" class="d-block w-100" alt="Описание 2">
+            </div>
+            <div class="carousel-item">
+              <img src="https://avatars.mds.yandex.net/get-mpic/4076910/img_id4559361045903459611.png/orig" class="d-block w-100" alt="Описание 2">
+            </div>
+        </div>
+    </div>
+{% endblock %}
