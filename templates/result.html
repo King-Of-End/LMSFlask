@@ -1,0 +1,14 @@
+{% extends "base_no_login.html" %}
+
+{% block content %}
+    <h1>Результаты отбора</h1>
+    <h5>Претендента на участие в миссии {{nickname}}:</h5>
+    <div class="alert alert-success" role="alert">
+      Поздравляем! Ваш рейтинг после {{level}} этапа отбора;
+    </div>
+    <h5>Составляет {{rating}}</h5>
+    <div class="alert alert-warning" role="alert">
+        Желаем удачи!
+    </div>
+
+{% endblock %}
