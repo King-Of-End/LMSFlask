@@ -1,35 +1,64 @@
-sp = [[int(y) for y in x.split()] for x in open('26_2580.txt').readlines()]
-_, sk = sp[0]
-np = []
-for start, end in sp[1:]:
-    if start == end == 0:
-        np.append([start, end])
-    if start < sk:
-        start = sk
-    if end < sk:
-        if end == 0:
-            end += sk - 1
-        else:
-            continue
-    np.append([start - sk, end - sk])
-np.sort()
-k = np.count([0, 0])
-sp = np[k:]
-a = [0] * (max(map(max, sp)) + 1)
-a[0] = k
-a[-1] = -k
-for start, end in sp:
+import sys
+
+def solve():
+    filename = '26_2580.txt'
     try:
-        a[start] += 1
-        a[end] -= 1
-    except:
-        print(start, end)
-        raise
-k = 0
-lk = 0
-n = 0
-mk = []
-for i in a:
-    k += i
-    mk = max(mk, k)
-print(mk)
+        with open(filename, 'r') as f:
+            data = f.read().split()
+    except FileNotFoundError:
+        print(f"Ошибка: файл {filename} не найден.")
+        sys.exit(1)
+
+    if not data:
+        print(0, 0)
+        return
+
+    it = iter(data)
+    try:
+        N = int(next(it))
+        K = int(next(it))
+    except StopIteration:
+        print("Ошибка формата входных данных.")
+        return
+
+    DAY_MS = 24 * 3600 * 1000
+    WIN_START = K
+    WIN_END = K + DAY_MS
+
+    events = []
+    for _ in range(N):
+        s = int(next(it))
+        e = int(next(it))
+
+        start = s if s != 0 else WIN_START
+        end = e if e != 0 else WIN_END
+
+        start = max(start, WIN_START)
+        end = min(end, WIN_END)
+
+        if start < end:
+            events.append((start, 1))
+            events.append((end, -1))
+
+    events.sort()
+
+    max_cnt = 0
+    cur_cnt = 0
+    max_dur = 0
+    last_t = events[0][0]
+
+    for t, typ in events:
+        dt = t - last_t
+        if dt > 0:
+            if cur_cnt > max_cnt:
+                max_cnt = cur_cnt
+                max_dur = dt
+            elif cur_cnt == max_cnt:
+                max_dur += dt
+        cur_cnt += typ
+        last_t = t
+
+    print(max_cnt, max_dur)
+
+if __name__ == '__main__':
+    solve()
