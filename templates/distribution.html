@@ -1,0 +1,11 @@
+{% extends "base_no_login.html" %}
+
+{% block content %}
+    {% for name in cosmo_list %}
+        {% if loop.first %}
+            <p>{{name}} - каюта №{{loop.index}} - капитан корабля</p>
+        {% else %}
+            <p>{{name}} - каюта №{{loop.index}}</p>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
