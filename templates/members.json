@@ -1,4 +1,4 @@
 {
-  "Энди": {"surname": "Уир", "img": "endi", "special": "астрогеолог"},
-  "Майк": {"surname": "", "img": "mike", "special": "кот"}
+  "Энди": {"name": "Энди", "surname": "Уир", "img_path": "static/img/notold.png", "special": "астрогеолог"},
+  "Майк": {"name": "Майк", "surname": "", "img_path": "static/img/old.png", "special": "кот"}
 }
