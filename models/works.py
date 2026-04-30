@@ -26,5 +26,5 @@ class Jobs(SqlAlchemyBase):
             'start_date': self.start_date,
             'end_date': self.end_date,
             'is_finished': self.is_finished,
-            'team_leader': self.team_leader_obj.name
+            'team_leader': self.team_leader_obj.name + ', ' + self.team_leader_obj.surname
         }
