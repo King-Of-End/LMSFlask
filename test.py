@@ -1,64 +1,52 @@
-import sys
+from flask import Flask
+from data import db_session
+from models import User
 
-def solve():
-    filename = '26_2580.txt'
-    try:
-        with open(filename, 'r') as f:
-            data = f.read().split()
-    except FileNotFoundError:
-        print(f"Ошибка: файл {filename} не найден.")
-        sys.exit(1)
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
-    if not data:
-        print(0, 0)
-        return
 
-    it = iter(data)
-    try:
-        N = int(next(it))
-        K = int(next(it))
-    except StopIteration:
-        print("Ошибка формата входных данных.")
-        return
+def main():
+    db_session.global_init("db/works.db")
+    session = db_session.create_session()
 
-    DAY_MS = 24 * 3600 * 1000
-    WIN_START = K
-    WIN_END = K + DAY_MS
+    captain = User()
+    captain.surname = 'Scott'
+    captain.name = 'Ridley'
+    captain.age= 21
+    captain.position = 'captain'
+    captain.address = 'module_1'
+    captain.email = 'scott_chief@mars.org'
 
-    events = []
-    for _ in range(N):
-        s = int(next(it))
-        e = int(next(it))
+    dohodyaga1 = User()
+    dohodyaga1.surname = 'Wind'
+    dohodyaga1.name = 'Ding'
+    dohodyaga1.age= 666
+    dohodyaga1.position = 'dohodyaga'
+    dohodyaga1.address = 'underground/dark_world'
+    dohodyaga1.email = 'gaster1@lab.ut'
 
-        start = s if s != 0 else WIN_START
-        end = e if e != 0 else WIN_END
+    dohodyaga2 = User()
+    dohodyaga2.surname = 'Wind'
+    dohodyaga2.name = 'Ding'
+    dohodyaga2.age= 666
+    dohodyaga2.position = 'dohodyaga'
+    dohodyaga2.address = 'underground/dark_world'
+    dohodyaga2.email = 'gaster2@lab.ut'
 
-        start = max(start, WIN_START)
-        end = min(end, WIN_END)
+    dohodyaga3 = User()
+    dohodyaga3.surname = 'Wind'
+    dohodyaga3.name = 'Ding'
+    dohodyaga3.age= 666
+    dohodyaga3.position = 'dohodyaga'
+    dohodyaga3.address = 'underground/dark_world'
+    dohodyaga3.email = 'gaster3@lab.ut'
 
-        if start < end:
-            events.append((start, 1))
-            events.append((end, -1))
-
-    events.sort()
-
-    max_cnt = 0
-    cur_cnt = 0
-    max_dur = 0
-    last_t = events[0][0]
-
-    for t, typ in events:
-        dt = t - last_t
-        if dt > 0:
-            if cur_cnt > max_cnt:
-                max_cnt = cur_cnt
-                max_dur = dt
-            elif cur_cnt == max_cnt:
-                max_dur += dt
-        cur_cnt += typ
-        last_t = t
-
-    print(max_cnt, max_dur)
+    session.add(captain)
+    session.add(dohodyaga1)
+    session.add(dohodyaga2)
+    session.add(dohodyaga3)
+    session.commit()
 
 if __name__ == '__main__':
-    solve()
+    main()

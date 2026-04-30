@@ -37,3 +37,11 @@ class User(SqlAlchemyBase, UserMixin):
     )
     news = orm.relationship("News", back_populates='user')
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'email': self.email,
+            'hashed_password': self.hashed_password,
+            'created_date': self.created_date,
+        }

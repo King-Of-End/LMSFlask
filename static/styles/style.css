@@ -11,3 +11,12 @@ form.login_form {
     border-radius: 5px;
     padding: 10px;
 }
+
+main.container table {
+  border-collapse: collapse;
+}
+
+main.container td, th {
+  border: 1px solid #333;
+  padding: 6px 10px;
+}

@@ -1,0 +1,23 @@
+{% extends "base_no_login.html" %}
+
+{% block content %}
+<h1>Works log</h1>
+{% for work in works %}
+    <table>
+        <tr>
+            <td>Title of activity</td>
+            <td>Team Leader</td>
+            <td>Duration</td>
+            <td>List of collaborators</td>
+            <td>is finished</td>
+        </tr>
+        <tr>
+            <td>{{work['job']}}</td>
+            <td>{{work['team_leader']}}</td>
+            <td>{{work['work_size']}}</td>
+            <td>{{work['collaborators']}}</td>
+            <td>{{work['is_finished']}}</td>
+        </tr>
+    </table>
+{% endfor %}
+{% endblock %}
