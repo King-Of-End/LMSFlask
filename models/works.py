@@ -1,5 +1,8 @@
 import sqlalchemy
+from flask_wtf import FlaskForm
 from sqlalchemy.orm import relationship
+from wtforms import StringField
+from wtforms.fields.simple import BooleanField, SubmitField
 
 from data.db_session import SqlAlchemyBase
 
@@ -28,3 +31,13 @@ class Jobs(SqlAlchemyBase):
             'is_finished': self.is_finished,
             'team_leader': self.team_leader_obj.name + ', ' + self.team_leader_obj.surname
         }
+
+class JobForm(FlaskForm):
+    team_leader = StringField('Team Leader')
+    job = StringField('Job')
+    work_size = StringField('Work Size')
+    collaborators = StringField('Collaborators')
+    start_date = StringField('Start Date')
+    end_date = StringField('End Date')
+    is_finished = BooleanField('Is Finished')
+    submit = SubmitField('Submit')
